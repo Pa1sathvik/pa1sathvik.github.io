@@ -1,0 +1,26 @@
+Quick hits, no fluff:
+
+Get referrals fast
+
+Message 20+ ex-colleagues today: "laid off, looking, can you refer me at [company]?" Volume wins.
+LinkedIn search: your company name + "recruiter" → InMail them directly.
+Post "Open to Work" publicly — people reach out.
+Ask ex-colleagues who left PayPal — they're now inside other companies.
+
+Jobs — where to look
+
+Wellfound, Turing (US remote), LinkedIn, Instahyre, Cutshort (Bengaluru-heavy).
+Set LinkedIn job alerts for your stack, apply within 24hrs of posting.
+
+Prep — priority order
+
+NeetCode 150 → start with easy, 2-3/day.
+System design: rehearse KAIROS out loud (your killer answer).
+5 STAR stories + your layoff line ("reorg, not performance").
+
+Hacks
+
+Apply to reposted/fresh jobs first (recruiters active).
+Message the hiring manager directly, not just apply.
+Recruiters on LinkedIn > company portals.
+Referrals skip the ATS entirely — always ask for one before applying cold.
