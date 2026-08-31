@@ -1,0 +1,18 @@
+Companies to apply to (Bengaluru + remote), by category:
+
+Product companies (strong backend/distributed-systems demand):
+Flipkart, Razorpay, Swiggy, Zomato, PhonePe, CRED, Meesho, Groww, Zerodha, Dream11, Navi, Postman, Hasura, Atlassian (India), Freshworks.
+
+Global companies with big Bengaluru engineering centers (MTS-level, pay well):
+Google, Microsoft, Uber, Walmart Global Tech, LinkedIn, Salesforce, Adobe, Databricks, Confluent (literally Kafka/Pulsar — your exact stack), Stripe, Atlassian, Coinbase, PayPal-competitors like Visa/Mastercard tech.
+
+Remote-friendly (many hire India-remote):
+GitLab, Confluent, HashiCorp, MongoDB, Turing, Toptal (contract), Postman, Zoho (Chennai/remote), and a lot of US startups hiring India-remote via Deel/remote-first setups. Search "remote backend engineer India" on LinkedIn/Wellfound.
+
+Your stack is a genuine edge at: Confluent (Kafka/Pulsar), Databricks, MongoDB, any company doing high-scale messaging/data infra — you've done real distributed-systems work most candidates only read about.
+
+What to prepare, in priority order:
+
+DSA — this is the gate. Start NeetCode 150 or Blind 75 (free, Google them). 2 problems/day. This is where most of your prep time goes over the next 6–8 weeks. You can't do this in the next hour, but bookmark the list now on your personal browser.
+System design — your strength. Your prep is mostly rehearsal: practice telling the KAIROS scheduler story as a design answer (requirements → scale → design → the single-fire claim + reaper race + at-least-once/idempotency → tradeoffs). Also skim "System Design Interview" by Alex Xu (or the free "system design primer" on GitHub — bookmark it now).
+Behavioral — write 5 STAR stories in a personal doc. The DBA schema debate is a perfect "technical disagreement" story. Prep the layoff answer: "reorg, not performance, using it to find work I'm excited about."
