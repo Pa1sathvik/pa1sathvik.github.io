@@ -1,0 +1,16 @@
+Contract / freelance platforms (fastest to start, good for bridging):
+
+Turing.com — specifically matches Indian engineers to US remote roles. Built for exactly your situation. Strong for backend/full-stack.
+Toptal — high-end, vetted, pays well; has a screening process but worth it for someone with your experience.
+Braintrust — remote engineering, no middleman fees.
+Gun.io, Arc.dev (formerly Arc/CodementorX) — remote dev contracts.
+Wellfound (formerly AngelList Talent) — startups, many remote, filter for "remote" + "worldwide."
+Upwork / Contra — more freelance/project-based; good for quick income, more variable.
+
+Full-time remote job boards (search these with "remote" + your stack):
+
+RemoteOK.com, Remotive.com, WeWorkRemotely.com — dedicated remote boards.
+Wellfound, LinkedIn (filter Remote), YCombinator's Work at a Startup (workatastartup.com) — many YC startups hire India-remote.
+Himalayas.app, remote.co — remote-first company listings.
+
+The realistic best bet for you: Turing and Wellfound first
