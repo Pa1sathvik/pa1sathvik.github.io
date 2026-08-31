@@ -1,0 +1,19 @@
+System design — your strength, lead with it. You already think in these terms (you designed KAIROS). Prep:
+
+Rehearse KAIROS as your flagship story. You can answer "design a distributed scheduler / delayed-job system" better than almost any candidate because you built one. Practice telling it in the standard format: requirements → scale estimates → high-level design → deep-dive on the hard part (the single-fire claim, the reaper race, at-least-once + idempotency) → tradeoffs. That's a top-tier answer.
+Cover the standard set: URL shortener, rate limiter, notification system (you built one!), news feed, distributed cache, message queue. You have real analogues for several.
+Know the vocabulary cold: CAP, consistency models, partitioning/sharding, replication, idempotency, back-pressure, load balancing, caching strategies. You use these already — just be ready to name them crisply.
+
+DSA — where most of your prep time goes. This is the filter that catches strong engineers, because it's the one thing you don't do daily. Honest plan:
+
+~150–200 LeetCode problems, focused on patterns not volume: arrays/hashing, two pointers, sliding window, binary search, trees/BFS-DFS, graphs, heaps, dynamic programming, backtracking.
+Do the "Blind 75" or NeetCode 150 — curated lists that cover the patterns efficiently. Don't grind random problems.
+Time-box it: 2 problems/day for 6–8 weeks gets you interview-ready. Focus on explaining while coding — Indian product-company rounds want you to talk through your approach.
+Given 11 years, your problem-solving is strong; it's the speed and pattern-recognition under time pressure that needs refreshing. That's what practice fixes.
+
+Behavioral — quick to prep, easy to underrate.
+
+Prepare 5–6 STAR stories (Situation, Task, Action, Result): a hard technical decision (the schema debate with the DBA is perfect), a conflict, a failure/mistake, leading without authority, mentoring.
+The layoff will come up ("why are you looking?"). Practice a clean, no-bitterness answer: "My role was impacted in a reorg — it wasn't performance-related, and I'm using it as a chance to find work I'm excited about." Calm and brief.
+
+My honest priority for you: DSA first (it's the gap and the gate), system design second (polish your natural strength into crisp narratives — the KAIROS walkthrough especially), behavioral third (light prep, big payoff).
