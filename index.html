@@ -1,271 +1,1391 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sathvik Vutukuri — Backend Architect</title>
-<meta name="description" content="Sathvik Vutukuri — full-stack engineer. Eleven years building complete products, from distributed backends to the interfaces on top.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#0d1b2a; --ink-2:#1b2a3a; --blue:#3b60e4; --slate:#5a6b7b; --slate-2:#8695a3;
-    --paper:#fbfcfd; --paper-2:#f2f5f8; --amber:#e8a13a; --line:#dde5ec; --line-strong:#c3cfd9; --ok:#3fa66a;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{font-family:"Inter",sans-serif;color:var(--ink);background:var(--paper);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
-  a{color:inherit;text-decoration:none}
-  ::selection{background:var(--amber);color:var(--ink)}
-  .wrap{max-width:1000px;margin:0 auto;padding:0 32px}
-  @media(max-width:600px){.wrap{padding:0 20px}}
-  .mono{font-family:"JetBrains Mono",monospace}
-  .disp{font-family:"Space Grotesk",sans-serif}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  header.top{position:sticky;top:0;z-index:20;background:rgba(251,252,253,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-  header.top .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
-  .sig{font-family:"Space Grotesk";font-weight:700;font-size:17px;letter-spacing:-.01em}
-  .sig .dot{color:var(--blue)}
-  nav a{font-size:14px;color:var(--slate);margin-left:26px;font-weight:500;transition:color .15s}
-  nav a:hover{color:var(--ink)}
-  @media(max-width:620px){nav a{margin-left:16px;font-size:13px}}
+  <title>Sathvik Vutukuri — Backend Architect</title>
 
-  .hero{padding:88px 0 72px}
-  .hero .avail{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--slate);font-weight:500;margin-bottom:28px}
-  .hero .avail .pulse{width:8px;height:8px;border-radius:50%;background:var(--ok);animation:pulse 2.4s infinite}
-  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(63,166,106,.45)}70%{box-shadow:0 0 0 7px rgba(63,166,106,0)}100%{box-shadow:0 0 0 0 rgba(63,166,106,0)}}
-  .hero h1{font-family:"Space Grotesk";font-weight:700;font-size:58px;line-height:1.02;letter-spacing:-.025em;max-width:16ch}
-  .hero .lede{font-size:20px;color:var(--ink-2);max-width:56ch;margin-top:24px;line-height:1.55}
-  .hero .who{font-size:16px;color:var(--slate);margin-top:18px;max-width:56ch}
-  .hero .actions{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  .btn{font-family:"Space Grotesk";font-weight:600;font-size:14.5px;padding:12px 22px;border-radius:8px;transition:transform .12s,background .15s,border-color .15s;display:inline-block}
-  .btn-solid{background:var(--ink);color:var(--paper)}
-  .btn-solid:hover{background:var(--ink-2);transform:translateY(-1px)}
-  .btn-line{border:1px solid var(--line-strong);color:var(--ink)}
-  .btn-line:hover{border-color:var(--ink);transform:translateY(-1px)}
-  @media(max-width:600px){.hero{padding:56px 0 48px}.hero h1{font-size:38px}.hero .lede{font-size:18px}}
+  <!-- SV Favicon -->
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d1b2a'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-family='Arial,sans-serif' font-size='25' font-weight='700' fill='%23ffffff'%3ESV%3C/text%3E%3C/svg%3E"
+  >
 
-  .band{background:var(--ink);color:var(--paper);border-radius:14px;overflow:hidden}
-  .band .row{display:grid;grid-template-columns:repeat(4,1fr)}
-  .band .m{padding:26px 28px;border-right:1px solid rgba(255,255,255,.09)}
-  .band .m:last-child{border-right:none}
-  .band .m .k{font-family:"JetBrains Mono";font-size:11px;letter-spacing:.06em;color:var(--slate-2);text-transform:uppercase;display:flex;align-items:center;gap:7px}
-  .band .m .k::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--amber);flex:none}
-  .band .m .v{font-family:"Space Grotesk";font-weight:600;font-size:30px;margin-top:12px;letter-spacing:-.02em}
-  .band .m .u{font-size:13px;color:var(--slate-2);margin-top:2px}
-  @media(max-width:720px){.band .row{grid-template-columns:1fr 1fr}.band .m:nth-child(2){border-right:none}.band .m:nth-child(1),.band .m:nth-child(2){border-bottom:1px solid rgba(255,255,255,.09)}}
-  @media(max-width:420px){.band .m .v{font-size:24px}}
+  <meta
+    name="description"
+    content="Sathvik Vutukuri — Backend Architect with 11+ years building distributed systems, high-throughput platforms, and AI-powered engineering workflows."
+  >
 
-  section{padding:72px 0;border-top:1px solid var(--line)}
-  .shead{display:flex;align-items:baseline;gap:14px;margin-bottom:40px}
-  .shead .num{font-family:"JetBrains Mono";font-size:13px;color:var(--blue);font-weight:500}
-  .shead h2{font-family:"Space Grotesk";font-weight:600;font-size:26px;letter-spacing:-.02em}
-  .shead .aside{margin-left:auto;font-size:14px;color:var(--slate);max-width:34ch;text-align:right}
-  @media(max-width:600px){.shead .aside{display:none}}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  .xp{display:grid;grid-template-columns:190px 1fr;gap:8px 34px;padding:30px 0;border-top:1px solid var(--line)}
-  .xp:first-of-type{border-top:none;padding-top:0}
-  .xp .meta .co{font-family:"Space Grotesk";font-weight:600;font-size:18px}
-  .xp .meta .rl{color:var(--slate);font-size:14.5px;margin-top:2px}
-  .xp .meta .dt{font-family:"JetBrains Mono";font-size:12.5px;color:var(--slate-2);margin-top:10px}
-  .xp .body .lead{color:var(--ink-2);font-size:15.5px;margin-bottom:14px}
-  .thread{margin-bottom:18px}
-  .thread:last-child{margin-bottom:0}
-  .thread .tt{font-family:"Space Grotesk";font-weight:600;font-size:14px;color:var(--blue);margin-bottom:8px}
-  .thread ul{list-style:none}
-  .thread li{position:relative;padding-left:18px;margin-bottom:7px;color:var(--ink-2);font-size:15px;max-width:66ch}
-  .thread li::before{content:"";position:absolute;left:0;top:10px;width:6px;height:1px;background:var(--line-strong)}
-  .thread li b{font-weight:600;color:var(--ink)}
-  .award-line{font-size:13px;color:var(--slate);margin-top:14px;font-family:"JetBrains Mono"}
-  @media(max-width:640px){.xp{grid-template-columns:1fr;gap:14px}.xp .meta .dt{margin-top:4px}}
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
 
-  .caps{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-  @media(max-width:640px){.caps{grid-template-columns:1fr}}
-  .cap{background:var(--paper);padding:24px 26px}
-  .cap h3{font-family:"Space Grotesk";font-weight:600;font-size:15px;margin-bottom:12px}
-  .cap .items{display:flex;flex-wrap:wrap;gap:7px}
-  .cap .t{font-family:"JetBrains Mono";font-size:12.5px;color:var(--ink-2);background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:4px 9px}
+  <style>
+    :root {
+      --ink: #0d1b2a;
+      --ink-2: #1b2a3a;
+      --blue: #3b60e4;
+      --slate: #5a6b7b;
+      --slate-2: #8695a3;
+      --paper: #fbfcfd;
+      --paper-2: #f2f5f8;
+      --amber: #e8a13a;
+      --line: #dde5ec;
+      --line-strong: #c3cfd9;
+      --ok: #3fa66a;
+    }
 
-  .contact-card{background:var(--ink);color:var(--paper);border-radius:16px;padding:52px 48px}
-  .contact-card h2{font-family:"Space Grotesk";font-weight:600;font-size:32px;letter-spacing:-.02em;max-width:20ch}
-  .contact-card p{color:var(--slate-2);margin-top:14px;max-width:50ch;font-size:16px}
-  .contact-card .rows{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px}
-  .contact-card a.link{font-family:"Space Grotesk";font-weight:500;font-size:15px;border:1px solid rgba(255,255,255,.18);border-radius:9px;padding:12px 20px;transition:.15s}
-  .contact-card a.link:hover{border-color:var(--paper);background:rgba(255,255,255,.06)}
-  .contact-card a.link.solid{background:var(--amber);color:var(--ink);border-color:var(--amber);font-weight:600}
-  .contact-card a.link.solid:hover{background:#f0ad48}
-  @media(max-width:600px){.contact-card{padding:36px 26px}.contact-card h2{font-size:26px}}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  footer{padding:40px 0 56px;color:var(--slate-2);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-  footer .mono{font-size:12px}
-  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
-</style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ::selection {
+      background: var(--amber);
+      color: var(--ink);
+    }
+
+    .wrap {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .mono {
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    .disp {
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    /* HEADER */
+
+    header.top {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(251, 252, 253, 0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    header.top .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 64px;
+    }
+
+    .sig {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      letter-spacing: -0.01em;
+    }
+
+    .sig .dot {
+      color: var(--blue);
+    }
+
+    nav a {
+      font-size: 14px;
+      color: var(--slate);
+      margin-left: 26px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+
+    nav a:hover {
+      color: var(--ink);
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 88px 0 72px;
+    }
+
+    .hero .avail {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    .availability-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #e8f6ee;
+      color: #217a47;
+      border: 1px solid #b9dfc8;
+      border-radius: 7px;
+      padding: 7px 12px;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--ok);
+      animation: pulse 2.4s infinite;
+      flex: none;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(63, 166, 106, 0.45);
+      }
+
+      70% {
+        box-shadow: 0 0 0 7px rgba(63, 166, 106, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(63, 166, 106, 0);
+      }
+    }
+
+    .hero h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 58px;
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      max-width: 17ch;
+    }
+
+    .hero .lede {
+      font-size: 20px;
+      color: var(--ink-2);
+      max-width: 58ch;
+      margin-top: 24px;
+      line-height: 1.55;
+    }
+
+    .hero .who {
+      font-size: 16px;
+      color: var(--slate);
+      margin-top: 18px;
+      max-width: 58ch;
+    }
+
+    .hero .actions {
+      margin-top: 36px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 14.5px;
+      padding: 12px 22px;
+      border-radius: 8px;
+      transition:
+        transform 0.12s,
+        background 0.15s,
+        border-color 0.15s;
+      display: inline-block;
+    }
+
+    .btn-solid {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    .btn-solid:hover {
+      background: var(--ink-2);
+      transform: translateY(-1px);
+    }
+
+    .btn-line {
+      border: 1px solid var(--line-strong);
+      color: var(--ink);
+    }
+
+    .btn-line:hover {
+      border-color: var(--ink);
+      transform: translateY(-1px);
+    }
+
+    /* CAPABILITY METRICS */
+
+    .band {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .band .row {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .band .m {
+      padding: 24px 18px;
+      border-right: 1px solid rgba(255, 255, 255, 0.09);
+      min-width: 0;
+    }
+
+    .band .m:last-child {
+      border-right: none;
+    }
+
+    .band .k {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--slate-2);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+    }
+
+    .band .k::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--amber);
+      flex: none;
+    }
+
+    .band .v {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 26px;
+      margin-top: 10px;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+
+    .band .u {
+      font-size: 11.5px;
+      color: var(--slate-2);
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    /* SECTIONS */
+
+    section {
+      padding: 72px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .shead {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 40px;
+    }
+
+    .shead .num {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 13px;
+      color: var(--blue);
+      font-weight: 500;
+    }
+
+    .shead h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+    }
+
+    .shead .aside {
+      margin-left: auto;
+      font-size: 14px;
+      color: var(--slate);
+      max-width: 34ch;
+      text-align: right;
+    }
+
+    /* EXPERIENCE */
+
+    .xp {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 8px 34px;
+      padding: 30px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .xp:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .co {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .rl {
+      color: var(--slate);
+      font-size: 14.5px;
+      margin-top: 2px;
+    }
+
+    .dt {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+      color: var(--slate-2);
+      margin-top: 10px;
+    }
+
+    .lead {
+      color: var(--ink-2);
+      font-size: 15.5px;
+      margin-bottom: 14px;
+    }
+
+    .thread {
+      margin-bottom: 18px;
+    }
+
+    .thread:last-child {
+      margin-bottom: 0;
+    }
+
+    .tt {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--blue);
+      margin-bottom: 8px;
+    }
+
+    .thread ul {
+      list-style: none;
+    }
+
+    .thread li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 7px;
+      color: var(--ink-2);
+      font-size: 15px;
+      max-width: 66ch;
+    }
+
+    .thread li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 1px;
+      background: var(--line-strong);
+    }
+
+    .thread li b {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .award-line {
+      font-size: 13px;
+      color: var(--slate);
+      margin-top: 14px;
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    /* CAPABILITIES */
+
+    .caps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--line);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .cap {
+      background: var(--paper);
+      padding: 24px 26px;
+    }
+
+    .cap h3 {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .t {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12.5px;
+      color: var(--ink-2);
+      background: var(--paper-2);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 4px 9px;
+    }
+
+    /* CONTACT */
+
+    .contact-card {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 16px;
+      padding: 52px 48px;
+    }
+
+    .contact-card h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 600;
+      font-size: 32px;
+      letter-spacing: -0.02em;
+      max-width: 22ch;
+    }
+
+    .contact-card p {
+      color: var(--slate-2);
+      margin-top: 14px;
+      max-width: 52ch;
+      font-size: 16px;
+    }
+
+    .rows {
+      margin-top: 34px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .link {
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 9px;
+      padding: 12px 20px;
+      transition: 0.15s;
+    }
+
+    .link:hover {
+      border-color: var(--paper);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .link.solid {
+      background: var(--amber);
+      color: var(--ink);
+      border-color: var(--amber);
+      font-weight: 600;
+    }
+
+    .link.solid:hover {
+      background: #f0ad48;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 40px 0 56px;
+      color: var(--slate-2);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+      .band .row {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .band .m:nth-child(3) {
+        border-right: none;
+      }
+
+      .band .m:nth-child(-n + 3) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .band .row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .band .m:nth-child(2),
+      .band .m:nth-child(4) {
+        border-right: none;
+      }
+
+      .band .m:nth-child(3) {
+        border-right: 1px solid rgba(255, 255, 255, 0.09);
+      }
+
+      .band .m:nth-child(4),
+      .band .m:nth-child(5) {
+        border-bottom: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .xp {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .dt {
+        margin-top: 4px;
+      }
+
+      .caps {
+        grid-template-columns: 1fr;
+      }
+
+      .shead .aside {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .wrap {
+        padding: 0 20px;
+      }
+
+      nav a {
+        margin-left: 16px;
+        font-size: 13px;
+      }
+
+      .hero {
+        padding: 56px 0 48px;
+      }
+
+      .hero h1 {
+        font-size: 38px;
+      }
+
+      .hero .lede {
+        font-size: 18px;
+      }
+
+      .contact-card {
+        padding: 36px 26px;
+      }
+
+      .contact-card h2 {
+        font-size: 26px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .band .v {
+        font-size: 22px;
+      }
+
+      .band .m {
+        padding: 22px 16px;
+      }
+
+      .band .u {
+        white-space: normal;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
 <header class="top">
   <div class="wrap">
-    <div class="sig">Sathvik Vutukuri<span class="dot">.</span></div>
+
+    <div class="sig">
+      SV · Sathvik Vutukuri<span class="dot">.</span>
+    </div>
+
     <nav>
       <a href="#work">Work</a>
       <a href="#capabilities">Capabilities</a>
       <a href="#contact">Contact</a>
     </nav>
+
   </div>
 </header>
 
-<div class="wrap">
+
+<main class="wrap">
+
+  <!-- HERO -->
+
   <section class="hero" style="border:none">
-    <div class="avail"><span class="pulse"></span> Open to full-stack &amp; backend roles · Bengaluru</div>
-    <h1 class="disp">Full-stack engineer who builds the whole system.</h1>
-    <p class="lede">Eleven years building complete products end to end — from distributed backends that
-      stay correct under load, to the React interfaces and portals people actually use. Deep on the
-      systems side, comfortable across the whole stack.</p>
-    <p class="who">Most recently a Member of Technical Staff at PayPal, where I designed a distributed
-      scheduler and decisioning services on the backend, and built the web portals and dashboards on top
-      of them.</p>
-    <div class="actions">
-      <a class="btn btn-solid" href="mailto:7vik.sathvik@gmail.com">Start a conversation</a>
-      <a class="btn btn-line" href="Vutukuri_Sathvik_Resume.pdf" target="_blank">Read the résumé</a>
-      <a class="btn btn-line" href="https://linkedin.com/in/sathvik-v" target="_blank" rel="noopener">LinkedIn</a>
+
+    <div class="avail">
+
+      <span class="availability-badge">
+        <span class="pulse"></span>
+        IMMEDIATELY AVAILABLE TO JOIN
+      </span>
+
+      <span>
+        Open to Backend, AI/Agentic &amp; Full-Stack roles · Bengaluru
+      </span>
+
     </div>
+
+
+    <h1 class="disp">
+      Backend Architect building distributed systems and AI-powered engineering platforms.
+    </h1>
+
+
+    <p class="lede">
+      11+ years designing and delivering production software across distributed backends,
+      high-throughput platforms, AI and agentic workflows, and the products built on top of them.
+      Deep in Java and systems architecture, with hands-on experience across cloud,
+      developer tooling, observability, and full-stack delivery.
+    </p>
+
+
+    <p class="who">
+      I work at the intersection of distributed systems and AI engineering — turning complex
+      workflows into reliable, scalable platforms. My experience spans architecture, low-level
+      design, backend services, messaging, cloud infrastructure, AI agents, developer tooling,
+      observability, and the React interfaces that bring these systems to users.
+    </p>
+
+
+    <div class="actions">
+
+      <a class="btn btn-solid" href="mailto:7vik.sathvik@gmail.com">
+        Start a conversation
+      </a>
+
+      <a
+        class="btn btn-line"
+        href="Vutukuri_Sathvik_Resume.pdf"
+        target="_blank"
+      >
+        Read the résumé
+      </a>
+
+      <a
+        class="btn btn-line"
+        href="https://linkedin.com/in/sathvik-v"
+        target="_blank"
+        rel="noopener"
+      >
+        LinkedIn
+      </a>
+
+    </div>
+
   </section>
+
+
+  <!-- CAPABILITY METRICS -->
 
   <div class="band">
+
     <div class="row">
-      <div class="m"><div class="k mono">throughput</div><div class="v disp">1B+</div><div class="u">requests / day served</div></div>
-      <div class="m"><div class="k mono">scheduled</div><div class="v disp">25–30M</div><div class="u">deferred intents / day</div></div>
-      <div class="m"><div class="k mono">burst</div><div class="v disp">2M</div><div class="u">due at a single instant</div></div>
-      <div class="m"><div class="k mono">experience</div><div class="v disp">11 yrs</div><div class="u">backend &amp; systems</div></div>
+
+      <div class="m">
+        <div class="k mono">experience</div>
+        <div class="v disp">11+</div>
+        <div class="u">years engineering</div>
+      </div>
+
+      <div class="m">
+        <div class="k mono">teams</div>
+        <div class="v disp">10+</div>
+        <div class="u">teams &amp; engineering groups</div>
+      </div>
+
+      <div class="m">
+        <div class="k mono">platforms</div>
+        <div class="v disp">10+</div>
+        <div class="u">applications &amp; platforms</div>
+      </div>
+
+      <div class="m">
+        <div class="k mono">scale</div>
+        <div class="v disp">1B+</div>
+        <div class="u">requests / day served</div>
+      </div>
+
+      <div class="m">
+        <div class="k mono">ai &amp; agentic</div>
+        <div class="v disp">Agentic AI</div>
+        <div class="u">workflows &amp; SDLC</div>
+      </div>
+
     </div>
+
   </div>
 
+
+  <!-- WORK -->
+
   <section id="work">
+
     <div class="shead">
+
       <span class="num mono">01</span>
-      <h2 class="disp">Where I've worked</h2>
-      <span class="aside">Three companies, one throughline: owning products end to end — backend, services, and the interfaces on top.</span>
+
+      <h2 class="disp">
+        Where I've worked
+      </h2>
+
+      <span class="aside">
+        Eleven years building and architecting products across backend systems,
+        distributed platforms, cloud infrastructure, AI engineering, and full-stack applications.
+      </span>
+
     </div>
 
-    <div class="xp">
-      <div class="meta">
-        <div class="co">PayPal</div>
-        <div class="rl">Member of Technical Staff I · Backend Architect</div>
-        <div class="dt">APR 2022 — PRESENT</div>
-      </div>
-      <div class="body">
-        <p class="lead">Backend and architecture across three platforms — communications, decisioning, and server-driven UI.</p>
-        <div class="thread">
-          <div class="tt disp">KAIROS — Communication Decision Platform</div>
-          <ul>
-            <li>Designed core components of the platform that governs what every customer is communicated, when, and on which channel.</li>
-            <li>Designed the <b>Intent Management System</b> — the ingestion and management layer for decision intents from producing systems.</li>
-            <li>Architected the <b>Deferred-Intent Scheduler</b> — a durable, leaderless timer on Bigtable and Pulsar for ~25–30M intents/day with 2M-at-once bursts, using per-row atomic compare-and-set for single-fire dispatch and Kafka consumer-group hash-partitioning for coordination without a leader.</li>
-            <li>Owned its low-level design end to end: row-key schema for even distribution, the scan-claim-dispatch loop, garbage collection, recovery, and at-least-once dispatch with idempotent re-evaluation.</li>
-            <li>Designed part of the <b>Ledger</b> and the contracts wiring the scheduler into the decision engine's trigger pipeline.</li>
-          </ul>
-        </div>
-        <div class="thread">
-          <div class="tt disp">PayPal Communications</div>
-          <ul>
-            <li>Architected and own the backend powering all PayPal communications — push, notification center, critical and silent alerts — across PayPal, Venmo and Xoom.</li>
-            <li>Built <b>Beacon</b>, the company-wide portal to schedule and manage communications, end to end.</li>
-            <li>Made the platform a producer of intent objects, so every send, suppress, or defer is centrally evaluated against eligibility, scoring, caps and quiet hours.</li>
-          </ul>
-        </div>
-        <div class="thread">
-          <div class="tt disp">Server-Driven UI Platform</div>
-          <ul>
-            <li>Led the backend for an in-house server-driven UI platform, built from scratch, serving <b>1B+ requests/day</b> across iOS, Android and Web.</li>
-            <li>Architected the core services: version management, page inheritance, schema versioning and data model.</li>
-          </ul>
-        </div>
-        <div class="award-line mono">PayPal SPOT Awards — 2022, 2023</div>
-      </div>
-    </div>
+
+    <!-- PAYPAL -->
 
     <div class="xp">
+
       <div class="meta">
-        <div class="co">Informatica</div>
-        <div class="rl">Senior Software Engineer</div>
-        <div class="dt">MAR 2020 — APR 2022</div>
+
+        <div class="co">
+          PayPal
+        </div>
+
+        <div class="rl">
+          Member of Technical Staff I · Backend Architect
+        </div>
+
+        <div class="dt">
+          APR 2022 — PRESENT
+        </div>
+
       </div>
+
+
       <div class="body">
-        <div class="thread"><ul>
-          <li>Built <b>SecureStats</b> end to end — a security-flaw management platform with full backend, frontend, data model and APIs.</li>
-          <li>Co-designed the flaw-management and notification services in a microservices architecture.</li>
-          <li>Mentored five engineers on service design and architecture. INFASTAR Award, 2021.</li>
-        </ul></div>
+
+        <p class="lead">
+          Backend architecture, distributed systems, AI engineering, communications,
+          decisioning, and server-driven UI across large-scale platforms.
+        </p>
+
+
+        <div class="thread">
+
+          <div class="tt disp">
+            KAIROS — Communication Decision Platform
+          </div>
+
+          <ul>
+
+            <li>
+              Designed core components of the platform that governs what every customer
+              is communicated, when, and on which channel.
+            </li>
+
+            <li>
+              Designed the <b>Intent Management System</b> — the ingestion and management
+              layer for decision intents from producing systems.
+            </li>
+
+            <li>
+              Architected the <b>Deferred-Intent Scheduler</b> — a durable, leaderless timer
+              on Bigtable and Pulsar for ~25–30M intents/day with 2M-at-once bursts,
+              using per-row atomic compare-and-set for single-fire dispatch and
+              consumer-group hash partitioning for coordination without a leader.
+            </li>
+
+            <li>
+              Owned its low-level design end to end: row-key schema for even distribution,
+              the scan-claim-dispatch loop, garbage collection, recovery, and
+              at-least-once dispatch with idempotent re-evaluation.
+            </li>
+
+            <li>
+              Designed part of the <b>Ledger</b> and the contracts wiring the scheduler
+              into the decision engine's trigger pipeline.
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div class="thread">
+
+          <div class="tt disp">
+            AI &amp; Agentic Engineering
+          </div>
+
+          <ul>
+
+            <li>
+              Built production AI-powered workflows using <b>Claude and Gemini</b>,
+              including function calling, tool integration, prompt orchestration,
+              and agent-driven engineering workflows.
+            </li>
+
+            <li>
+              Built AI agents for the Communications platform to expose platform
+              capabilities through natural-language interaction and workflow automation.
+            </li>
+
+            <li>
+              Designed an <b>MCP server</b> that exposes platform capabilities as
+              AI tools for LLM-based interaction and workflow automation.
+            </li>
+
+            <li>
+              Applied AI-assisted engineering practices across coding, refactoring,
+              unit testing, integration testing, and developer productivity.
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div class="thread">
+
+          <div class="tt disp">
+            PayPal Communications
+          </div>
+
+          <ul>
+
+            <li>
+              Architected and owned the backend powering PayPal communications —
+              push, notification center, critical and silent alerts — across
+              PayPal, Venmo and Xoom.
+            </li>
+
+            <li>
+              Built <b>Beacon</b>, the company-wide portal to schedule and manage
+              communications end to end.
+            </li>
+
+            <li>
+              Made the platform a producer of intent objects, so every send,
+              suppress, or defer is centrally evaluated against eligibility,
+              scoring, caps and quiet hours.
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div class="thread">
+
+          <div class="tt disp">
+            Server-Driven UI Platform
+          </div>
+
+          <ul>
+
+            <li>
+              Led the backend for an in-house server-driven UI platform,
+              built from scratch, serving <b>1B+ requests/day</b>
+              across iOS, Android and Web.
+            </li>
+
+            <li>
+              Architected the core services: version management,
+              page inheritance, schema versioning and data model.
+            </li>
+
+          </ul>
+
+        </div>
+
+
+        <div class="award-line mono">
+          PayPal SPOT Awards — 2022, 2023
+        </div>
+
       </div>
+
     </div>
 
+
+    <!-- INFORMATICA -->
+
     <div class="xp">
+
       <div class="meta">
-        <div class="co">Envestnet Yodlee</div>
-        <div class="rl">Senior Software Engineer</div>
-        <div class="dt">NOV 2015 — MAR 2020</div>
+
+        <div class="co">
+          Informatica
+        </div>
+
+        <div class="rl">
+          Senior Software Engineer
+        </div>
+
+        <div class="dt">
+          MAR 2020 — APR 2022
+        </div>
+
       </div>
+
+
       <div class="body">
-        <div class="thread"><ul>
-          <li>Architected <b>Juggernaut</b>, a microservice platform for automated issue resolution on Yodlee's PFM, owning backend and frontend design.</li>
-          <li>Built the observability stack — Spring Boot Actuator, Micrometer, Prometheus, Grafana — and service infra with Eureka, Zuul and Hystrix.</li>
-          <li>Dream Team Award for Juggernaut R&amp;D, 2018–2019.</li>
-        </ul></div>
+
+        <div class="thread">
+
+          <ul>
+
+            <li>
+              Built <b>SecureStats</b> end to end — a security-flaw management
+              platform with full backend, frontend, data model and APIs.
+            </li>
+
+            <li>
+              Co-designed the flaw-management and notification services
+              in a microservices architecture.
+            </li>
+
+            <li>
+              Mentored five engineers on service design and architecture.
+              INFASTAR Award, 2021.
+            </li>
+
+          </ul>
+
+        </div>
+
       </div>
+
     </div>
+
+
+    <!-- YODLEE -->
+
+    <div class="xp">
+
+      <div class="meta">
+
+        <div class="co">
+          Envestnet Yodlee
+        </div>
+
+        <div class="rl">
+          Senior Software Engineer
+        </div>
+
+        <div class="dt">
+          NOV 2015 — MAR 2020
+        </div>
+
+      </div>
+
+
+      <div class="body">
+
+        <div class="thread">
+
+          <ul>
+
+            <li>
+              Architected <b>Juggernaut</b>, a microservice platform for automated
+              issue resolution on Yodlee's PFM, owning backend and frontend design.
+            </li>
+
+            <li>
+              Built the observability stack — Spring Boot Actuator, Micrometer,
+              Prometheus, Grafana — and service infrastructure with Eureka,
+              Zuul and Hystrix.
+            </li>
+
+            <li>
+              Dream Team Award for Juggernaut R&amp;D, 2018–2019.
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
   </section>
+
+
+  <!-- CAPABILITIES -->
 
   <section id="capabilities">
+
     <div class="shead">
+
       <span class="num mono">02</span>
-      <h2 class="disp">What I work with</h2>
-      <span class="aside">Backend and distributed systems are my depth; frontend and full-stack delivery are part of how I ship.</span>
+
+      <h2 class="disp">
+        What I work with
+      </h2>
+
+      <span class="aside">
+        Distributed systems are my depth; AI engineering, cloud platforms,
+        backend architecture, and full-stack delivery are how I build complete systems.
+      </span>
+
     </div>
+
+
     <div class="caps">
-      <div class="cap"><h3 class="disp">Distributed systems</h3><div class="items">
-        <span class="t">System design</span><span class="t">Distributed scheduling</span>
-        <span class="t">Event-driven</span><span class="t">Idempotency</span>
-        <span class="t">Fault tolerance</span><span class="t">High throughput</span></div></div>
-      <div class="cap"><h3 class="disp">Languages &amp; concurrency</h3><div class="items">
-        <span class="t">Java (8–25)</span><span class="t">Virtual threads</span>
-        <span class="t">Structured concurrency</span><span class="t">SQL</span><span class="t">JavaScript</span></div></div>
-      <div class="cap"><h3 class="disp">Backend &amp; APIs</h3><div class="items">
-        <span class="t">Spring Boot</span><span class="t">GraphQL</span><span class="t">REST</span>
-        <span class="t">gRPC</span><span class="t">Microservices</span></div></div>
-      <div class="cap"><h3 class="disp">Messaging &amp; storage</h3><div class="items">
-        <span class="t">Kafka</span><span class="t">Pulsar</span><span class="t">Bigtable</span>
-        <span class="t">Oracle</span><span class="t">MongoDB</span></div></div>
-      <div class="cap"><h3 class="disp">Cloud &amp; platform</h3><div class="items">
-        <span class="t">GCP</span><span class="t">GKE</span><span class="t">Kubernetes</span><span class="t">Docker</span></div></div>
-      <div class="cap"><h3 class="disp">Frontend &amp; full-stack</h3><div class="items">
-        <span class="t">React</span><span class="t">Redux</span><span class="t">JavaScript</span>
-        <span class="t">Tailwind</span><span class="t">HTML/CSS</span><span class="t">Admin dashboards</span></div></div>
-      <div class="cap"><h3 class="disp">Observability</h3><div class="items">
-        <span class="t">Datadog</span><span class="t">Grafana</span><span class="t">Prometheus</span>
-        <span class="t">Micrometer</span><span class="t">OpenTelemetry</span></div></div>
+
+
+      <!-- AI & AGENTIC -->
+
+      <div class="cap">
+
+        <h3 class="disp">
+          AI &amp; Agentic Engineering
+        </h3>
+
+        <div class="items">
+
+          <span class="t">AI Agent Architecture</span>
+          <span class="t">Agentic Workflows</span>
+          <span class="t">Agentic SDLC</span>
+          <span class="t">LLM APIs</span>
+          <span class="t">Claude</span>
+          <span class="t">Gemini</span>
+          <span class="t">Function Calling</span>
+          <span class="t">Tool Integration</span>
+          <span class="t">MCP</span>
+          <span class="t">RAG</span>
+          <span class="t">Prompt Engineering</span>
+          <span class="t">AI-assisted Coding</span>
+          <span class="t">AI-assisted Testing</span>
+          <span class="t">Developer Productivity</span>
+
+        </div>
+
+      </div>
+
+
+      <!-- DISTRIBUTED SYSTEMS -->
+
+      <div class="cap">
+
+        <h3 class="disp">
+          Distributed Systems &amp; Architecture
+        </h3>
+
+        <div class="items">
+
+          <span class="t">System Design</span>
+          <span class="t">Distributed Systems</span>
+          <span class="t">Agentic System Architecture</span>
+          <span class="t">Distributed Scheduling</span>
+          <span class="t">Event-driven Architecture</span>
+          <span class="t">Consistency</span>
+          <span class="t">Idempotency</span>
+          <span class="t">Fault Tolerance</span>
+          <span class="t">High Throughput</span>
+          <span class="t">Concurrency</span>
+
+        </div>
+
+      </div>
+
+
+      <!-- LANGUAGES -->
+
+      <div class="cap">
+
+        <h3 class="disp">
+          Languages &amp; Concurrency
+        </h3>
+
+        <div class="items">
+
+          <span class="t">Java 8–25</span>
+          <span class="t">Virtual Threads</span>
+          <span class="t">Structured Concurrency</span>
+          <span class="t">CompletableFuture</span>
+          <span class="t">Multithreading</span>
+          <span class="t">SQL</span>
+          <span class="t">JavaScript</span>
+
+        </div>
+
+      </div>
+
+
+      <!-- BACKEND -->
+
+      <div class="cap">
+
+        <h3 class="disp">
+          Backend &amp; APIs
+        </h3>
+
+        <div class="items">
+
+          <span class="t">Spring Boot</span>
+          <span class="t">Microservices</span>
+          <span class="t">REST</span>
+          <span class="t">GraphQL</span>
+          <span class="t">gRPC</span>
+
+        </div>
+
+      </div>
+
+
+      <!-- MESSAGING & DATA -->
+
+      <div class="cap">
+
+        <h3 class="disp">
+          Messaging &amp; Data
+        </h3>
+
+        <div class="items">
+
+          <span class="t">Kafka</span>
+          <span class="t">Pulsar</span>
+          <span class="t">Bigtable</span>
+          <span class="t">BigQuery</span>
+          <span class="t">Oracle</span>
+          <span class="t">MongoDB</span>
+          <span class="t">MySQL</span>
+          <span class="t">SQL</span>
+
+        </div>
+
+      </div>
+
+
+      <!-- CLOUD -->
+
+      <div class="cap">
+
+        <h3 class="disp">
+          Cloud &amp; Platform
+        </h3>
+
+        <div class="items">
+
+          <span class="t">AWS</span>
+          <span class="t">GCP</span>
+          <span class="t">GKE</span>
+          <span class="t">Kubernetes</span>
+          <span class="t">Docker</span>
+          <span class="t">Amazon S3</span>
+
+        </div>
+
+      </div>
+
+
+      <!-- AGENTIC SDLC -->
+
+      <div class="cap">
+
+        <h3 class="disp">
+          Agentic AI &amp; SDLC
+        </h3>
+
+        <div class="items">
+
+          <span class="t">Agentic SDLC</span>
+          <span class="t">AI Code Generation</span>
+          <span class="t">AI Code Review</span>
+          <span class="t">AI Refactoring</span>
+          <span class="t">Test Generation</span>
+          <span class="t">Architecture Assistance</span>
+          <span class="t">Incident Analysis</span>
+          <span class="t">Engineering Automation</span>
+
+        </div>
+
+      </div>
+
+
+      <!-- FRONTEND -->
+
+      <div class="cap">
+
+        <h3 class="disp">
+          Frontend &amp; Full-stack
+        </h3>
+
+        <div class="items">
+
+          <span class="t">React</span>
+          <span class="t">Redux</span>
+          <span class="t">JavaScript</span>
+          <span class="t">Tailwind</span>
+          <span class="t">HTML/CSS</span>
+          <span class="t">Admin Dashboards</span>
+
+        </div>
+
+      </div>
+
+
+      <!-- OBSERVABILITY -->
+
+      <div class="cap">
+
+        <h3 class="disp">
+          Observability
+        </h3>
+
+        <div class="items">
+
+          <span class="t">Datadog</span>
+          <span class="t">Grafana</span>
+          <span class="t">Prometheus</span>
+          <span class="t">Micrometer</span>
+          <span class="t">OpenTelemetry</span>
+
+        </div>
+
+      </div>
+
+
     </div>
+
   </section>
+
+
+  <!-- CONTACT -->
 
   <section id="contact" style="border:none;padding-bottom:24px">
+
     <div class="contact-card">
-      <h2 class="disp">Let's talk about what you're building.</h2>
-      <p>I'm open to full-stack, backend, and distributed-systems roles. The fastest way to reach me is
-        email — I read everything and reply.</p>
+
+      <h2 class="disp">
+        Let's talk about what you're building.
+      </h2>
+
+      <p>
+        I'm open to Backend, AI/Agentic, Distributed Systems,
+        Architecture, and Full-Stack engineering roles.
+        I'm immediately available to join.
+        The fastest way to reach me is email — I read everything and reply.
+      </p>
+
       <div class="rows">
-        <a class="link solid" href="mailto:7vik.sathvik@gmail.com">7vik.sathvik@gmail.com</a>
-        <a class="link" href="tel:+918197748291">8197748291</a>
-        <a class="link" href="https://linkedin.com/in/sathvik-v" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="link" href="Vutukuri_Sathvik_Resume.pdf" target="_blank">Résumé (PDF)</a>
+
+        <a
+          class="link solid"
+          href="mailto:7vik.sathvik@gmail.com"
+        >
+          7vik.sathvik@gmail.com
+        </a>
+
+        <a
+          class="link"
+          href="tel:+918197748291"
+        >
+          8197748291
+        </a>
+
+        <a
+          class="link"
+          href="https://linkedin.com/in/sathvik-v"
+          target="_blank"
+          rel="noopener"
+        >
+          LinkedIn
+        </a>
+
+        <a
+          class="link"
+          href="Vutukuri_Sathvik_Resume.pdf"
+          target="_blank"
+        >
+          Résumé (PDF)
+        </a>
+
       </div>
+
     </div>
+
   </section>
 
+
   <footer>
-    <span>© <span id="yr"></span> Sathvik Vutukuri</span>
-    <span class="mono">Bengaluru, India</span>
+
+    <span>
+      © <span id="yr"></span> Sathvik Vutukuri
+    </span>
+
+    <span class="mono">
+      Bengaluru, India
+    </span>
+
   </footer>
-</div>
-<script>document.getElementById('yr').textContent=new Date().getFullYear();</script>
+
+</main>
+
+
+<script>
+  document.getElementById("yr").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
